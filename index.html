@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+
+  <title>Crypto Mixer — How Cryptocurrency Mixing Works, AML Risk &amp; Compliance (2026)</title>
+  <meta name="description" content="Crypto mixer guide (2026): what cryptocurrency mixers are, how mixing works, why mixers trigger AML flags, how blockchain analytics detect mixer exposure, VASP compliance responses, sanctioned mixers, and what to do when a wallet is flagged.">
+  <meta name="author" content="Crypto Finance Experts">
+  <link rel="canonical" href="https://crypto-mixer.example.com/">
+  <link rel="icon" type="image/png" href="Tornado.jpg">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://crypto-mixer.example.com/">
+  <meta property="og:title" content="Crypto Mixer — How Cryptocurrency Mixing Works, AML Risk &amp; Compliance (2026)">
+  <meta property="og:description" content="What crypto mixers are, how mixing works, why they trigger AML flags, and how VASPs respond to mixer exposure.">
+  <meta property="og:image" content="cover.png">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Crypto Mixer — Cryptocurrency Mixing &amp; AML Risk (2026)">
+  <meta property="twitter:description" content="Crypto mixer explained: how mixing works, AML detection, VASP compliance, and flagged wallet guidance.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Crypto Mixer — How Cryptocurrency Mixing Works, AML Risk & Compliance (2026)",
+    "description": "What crypto mixers are, how mixing works, why they trigger AML flags, how analytics detect exposure, and how compliance teams respond.",
+    "author": { "@type": "Organization", "name": "Crypto Finance Experts", "url": "https://crypto-mixer.example.com/" },
+    "publisher": { "@type": "Organization", "name": "Crypto Finance Experts" },
+    "datePublished": "2026-03-18",
+    "dateModified": "2026-03-18",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://crypto-mixer.example.com/" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://crypto-mixer.example.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compliance Guides", "item": "https://crypto-mixer.example.com/guides/" },
+      { "@type": "ListItem", "position": 3, "name": "Crypto Mixer", "item": "https://crypto-mixer.example.com/crypto-mixer/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a crypto mixer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A crypto mixer (also called a coin tumbler) is a service that pools cryptocurrency from multiple users and returns equivalent amounts to different addresses, breaking the on-chain transaction trail. By aggregating funds from many sources, the mixer makes it statistically difficult for blockchain analytics tools to link specific input addresses to specific output addresses. Crypto mixers are flagged as high-risk in AML screening because deliberately obscuring transaction provenance is a recognised money laundering technique under FATF guidance, regardless of the individual user's motivation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does crypto mixer exposure trigger AML compliance flags?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crypto mixer exposure triggers AML flags because the deliberate obfuscation of fund flows defeats the transaction traceability that anti-money laundering frameworks depend on. FATF Recommendation 15 and its virtual asset guidance explicitly classify the use of anonymity-enhancing technologies as a risk indicator requiring enhanced due diligence. Blockchain analytics tools flag any wallet that has interacted with a known mixer cluster as high-risk, since the mixing pattern — regardless of intent — prevents verification of the legitimate origin of funds."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      /* Dark Charcoal + Electric Lime */
+      --primary: #3F3F1A;
+      --primary-600: #333315;
+      --primary-700: #27270F;
+      --accent: #A3E635;
+      --accent-soft: #D9F99D;
+      --accent-bright: #BEF264;
+
+      --ink: #FAFFF0;
+      --muted: #A1A1AA;
+      --muted-2: #71717A;
+
+      --bg: #080809;
+      --panel: #0F100A;
+      --panel-2: #15160C;
+      --line: rgba(163,230,53,.12);
+      --line-soft: rgba(255,255,255,.08);
+
+      --ok: #22C55E;
+      --warn: #F59E0B;
+      --error: #EF4444;
+
+      --shadow: 0 18px 44px rgba(0,0,0,.68);
+      --radius: 14px;
+      --radius-lg: 22px;
+      --gap: 1.25rem;
+      --gap-lg: 2rem;
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color: var(--muted);
+      background:
+        radial-gradient(900px 580px at 10% 0%,  rgba(63,63,26,.30),  transparent 58%),
+        radial-gradient(800px 500px at 92% 10%, rgba(163,230,53,.06), transparent 55%),
+        radial-gradient(900px 600px at 50% 92%, rgba(51,51,21,.22),  transparent 60%),
+        linear-gradient(180deg, #060607 0%, #080809 50%, #060607 100%);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none }
+    a:hover { text-decoration: underline }
+    img { max-width: 100%; height: auto; display: block }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem }
+
+    h1,h2,h3,h4 { color: var(--ink); line-height: 1.25; margin: 0 0 .6rem }
+    h1 { font-size: clamp(2rem,4.5vw,3.1rem); font-weight: 950; letter-spacing: .2px }
+    h2 { font-size: clamp(1.35rem,2.8vw,2rem); margin-top: 2.2rem; padding-top: .6rem; border-top: 1px solid var(--line) }
+    h3 { font-size: clamp(1.05rem,2.2vw,1.3rem); color: var(--accent-soft) }
+    p, li, td, th { font-size: 1rem }
+    .lead { font-size: 1.125rem; color: #ECFCCB }
+    .muted { color: var(--muted) }
+    .muted-2 { color: var(--muted-2) }
+
+    .breadcrumb { padding: .7rem 0; font-size: .85rem; color: var(--muted-2) }
+    .breadcrumb a { color: var(--muted); font-weight: 600 }
+    .breadcrumb a:hover { color: var(--accent) }
+    .breadcrumb span { margin: 0 .4rem; opacity: .4 }
+
+    .meta-bar { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: .75rem; font-size: .83rem; color: var(--muted-2) }
+    .meta-bar time { font-weight: 700; color: var(--accent-soft) }
+
+    header.hero {
+      padding: clamp(2rem,6vw,4rem) 0;
+      background:
+        radial-gradient(700px 420px at 18% 10%, rgba(63,63,26,.30), transparent 60%),
+        radial-gradient(700px 420px at 90% 20%, rgba(163,230,53,.08), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.025), transparent 55%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-grid { display: grid; gap: var(--gap-lg); grid-template-columns: 1fr }
+    .hero-card {
+      background: linear-gradient(160deg, rgba(18,19,10,.92), rgba(12,13,7,.78));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(1rem,3vw,1.85rem);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-row { display: flex; align-items: center; gap: .9rem; margin-bottom: .75rem }
+    .brand-logo {
+      width: 54px; height: 54px;
+      border-radius: 14px;
+      border: 1px solid rgba(163,230,53,.18);
+      background: rgba(63,63,26,.14);
+      padding: .35rem; object-fit: contain;
+      box-shadow: 0 10px 22px rgba(0,0,0,.55);
+      flex: 0 0 auto;
+    }
+
+    .cta-wrap { display: flex; justify-content: center; margin-top: 1.5rem }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #65A30D 0%, #4D7C0F 55%, #84CC16 100%);
+      color: #0F1F00;
+      padding: 1.1rem 3.2rem;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 1.18rem;
+      letter-spacing: .4px;
+      box-shadow:
+        0 0 0 1px rgba(163,230,53,.30),
+        0 8px 26px rgba(63,63,26,.55),
+        0 22px 52px rgba(63,63,26,.24);
+      border: 1px solid rgba(163,230,53,.22);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .cta:hover {
+      transform: translateY(-3px) scale(1.025);
+      box-shadow:
+        0 0 0 2px rgba(163,230,53,.50),
+        0 12px 34px rgba(63,63,26,.65),
+        0 30px 62px rgba(63,63,26,.30);
+      filter: brightness(1.1);
+      text-decoration: none;
+      color: #0F1F00;
+    }
+
+    .note { border-left: 3px solid var(--accent); padding: .8rem 1rem; background: rgba(163,230,53,.07); border-radius: 10px; color: #ECFCCB }
+    .note.warn { border-left-color: var(--warn); background: rgba(245,158,11,.07); color: #FEF3C7 }
+    .note.err  { border-left-color: var(--error); background: rgba(239,68,68,.07); color: #FEE2E2 }
+
+    section.step-guide { padding: clamp(2rem,6vw,3.5rem) 0 }
+    .steps { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .step {
+      background: linear-gradient(180deg, rgba(18,19,10,.84), rgba(12,13,7,.68));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: 0 12px 26px rgba(0,0,0,.55);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 18px 34px rgba(0,0,0,.65); border-color: rgba(163,230,53,.26) }
+    .step .icon {
+      width: 54px; height: 54px; border-radius: 50%;
+      display: inline-grid; place-items: center;
+      background: rgba(63,63,26,.28);
+      margin-bottom: .6rem; color: var(--accent-soft);
+      font-weight: 950;
+      border: 1px solid rgba(163,230,53,.16);
+    }
+
+    main .card {
+      background: linear-gradient(175deg, rgba(18,19,10,.76), rgba(12,13,7,.62));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      box-shadow: 0 12px 26px rgba(0,0,0,.55);
+    }
+
+    .grid-2 { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .pillbar { display: flex; flex-wrap: wrap; gap: .6rem; margin: .75rem 0 0 }
+    .pill { border: 1px solid rgba(163,230,53,.18); background: rgba(63,63,26,.12); padding: .4rem .65rem; border-radius: 999px; font-weight: 800; color: var(--accent-soft) }
+
+    .toc { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(63,63,26,.10), rgba(255,255,255,.02)); border-radius: var(--radius); padding: 1rem }
+    .toc strong { color: var(--ink) }
+    .toc ul { margin: .5rem 0 0; padding-left: 1.1rem }
+    .toc li { margin: .25rem 0 }
+    .toc a { font-weight: 800; color: var(--accent) }
+
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 12px }
+    th, td { padding: .9rem; border-bottom: 1px solid var(--line-soft) }
+    th { background: rgba(63,63,26,.16); color: var(--ink); text-align: left }
+    tr.highlight { background: rgba(63,63,26,.09) }
+    tr:hover { background: rgba(255,255,255,.02) }
+
+    .ok { color: var(--ok) } .warn { color: var(--warn) } .err { color: var(--error) }
+
+    .eeat { background: linear-gradient(180deg, rgba(63,63,26,.10), rgba(255,255,255,.02)); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 12px 26px rgba(0,0,0,.55) }
+
+    .faq-item { border-bottom: 1px solid var(--line-soft); padding: .9rem 0 }
+    .faq-button { all: unset; display: flex; justify-content: space-between; align-items: center; width: 100%; cursor: pointer; padding: .3rem 0 }
+    .faq-button:focus-visible { outline: 2px solid var(--accent) }
+    .faq-button h3 { margin: 0; font-weight: 950 }
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height .28s ease }
+    .faq-content.open { padding-top: .6rem }
+    .faq-plus { font-weight: 950; color: var(--accent); font-size: 1.1rem; flex-shrink: 0; margin-left: .75rem }
+
+    .callout-grid { display: grid; gap: var(--gap); grid-template-columns: 1fr; margin-top: .75rem }
+    .mini { background: rgba(63,63,26,.07); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem }
+    .mini h3 { margin-bottom: .35rem }
+    .kpi-badges { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .5rem }
+    .kpi-badges span { border: 1px solid rgba(63,63,26,.30); background: rgba(63,63,26,.14); color: var(--accent-soft); padding: .3rem .55rem; border-radius: 999px; font-weight: 900; font-size: .9rem }
+
+    .stat-block { display: flex; flex-wrap: wrap; gap: var(--gap); margin: 1rem 0 }
+    .stat { flex: 1; min-width: 140px; background: rgba(63,63,26,.12); border: 1px solid rgba(163,230,53,.16); border-radius: var(--radius); padding: .9rem 1rem; text-align: center }
+    .stat-num { display: block; font-size: 1.75rem; font-weight: 950; color: var(--accent); line-height: 1.1 }
+    .stat-lbl { font-size: .82rem; color: var(--muted); margin-top: .25rem }
+
+    .risk-row { display: flex; align-items: center; gap: .75rem; margin: .4rem 0 }
+    .risk-lbl { min-width: 95px; font-size: .85rem; font-weight: 700; color: var(--accent-soft) }
+    .risk-track { flex: 1; height: 6px; background: rgba(255,255,255,.08); border-radius: 99px; overflow: hidden }
+    .risk-fill { height: 100%; border-radius: 99px }
+    .risk-fill.low  { background: linear-gradient(90deg,#15803D,#22C55E); width: 22% }
+    .risk-fill.med  { background: linear-gradient(90deg,#B45309,#F59E0B); width: 55% }
+    .risk-fill.high { background: linear-gradient(90deg,#7F1D1D,#EF4444); width: 88% }
+    .risk-fill.crit { background: linear-gradient(90deg,#450A0A,#DC2626); width: 100% }
+    .risk-val { min-width: 60px; text-align: right; font-size: .82rem; font-weight: 800 }
+
+    @media (min-width: 860px) {
+      .steps { grid-template-columns: repeat(4,1fr) }
+      .grid-2 { grid-template-columns: 1fr 1fr }
+      .callout-grid { grid-template-columns: 1fr 1fr }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero" role="banner">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <a href="/guides/">Compliance Guides</a><span>›</span>
+      <span aria-current="page">Crypto Mixer</span>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-card" aria-label="Intro">
+        <div class="meta-bar">
+          <span>By <strong>Crypto Finance Experts</strong></span>
+          <span>·</span>
+          <time datetime="2026-03-18">March 18, 2026</time>
+          <span>·</span>
+          <span>8 min read</span>
+        </div>
+
+        <div class="brand-row">
+          <img class="brand-logo"
+               src="Tornado.jpg"
+               alt="Crypto mixer AML compliance reference"
+               width="54" height="54">
+          <div>
+            <div class="muted" style="font-weight:900;letter-spacing:.2px;">Compliance &amp; AML Guide</div>
+            <div class="muted-2" style="font-size:.95rem;">Cryptocurrency Mixing&nbsp;•&nbsp;AML Risk&nbsp;•&nbsp;VASP Obligations&nbsp;•&nbsp;Blockchain Analytics</div>
+          </div>
+        </div>
+
+        <h1>Crypto Mixer: How Cryptocurrency Mixing Works, AML Risk &amp; Compliance (2026)</h1>
+        <p class="lead">
+          A practical compliance guide to crypto mixers — services that deliberately obscure
+          cryptocurrency transaction history. How mixing works, why every major AML screening
+          tool flags mixer exposure as high-risk, how blockchain analytics trace funds
+          through mixing protocols, and how VASPs and individual users should respond
+          when a wallet comes back flagged.
+        </p>
+
+        <div class="cta-wrap">
+          <a href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler"
+             class="cta" target="_blank" rel="noopener" aria-label="Crypto Mixer">
+            Crypto Mixer
+          </a>
+        </div>
+
+        <div class="note" style="margin-top:1.25rem;">
+          <strong>Key compliance principle:</strong> Crypto mixer exposure is an AML red flag
+          because it defeats the transaction traceability AML frameworks depend on — regardless
+          of the user's motivation. The correct response is proportionate to the mixer type,
+          hop distance, and volume: not a blanket block on every mixing-related flag.
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="step-guide" aria-labelledby="workflow-title">
+  <div class="container">
+    <h2 id="workflow-title">Crypto Mixer Compliance Workflow: Detect → Classify → Respond → Document</h2>
+    <div class="steps" role="list">
+      <article class="step" role="listitem">
+        <div class="icon">①</div>
+        <h3>Detect crypto mixer exposure</h3>
+        <p>Blockchain analytics tools flag wallets that have interacted with known mixer clusters or exhibit mixing behaviour patterns. The report specifies mixer type, hop distance, and volume — all of which determine the compliance response.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">②</div>
+        <h3>Classify: OFAC-sanctioned or non-sanctioned</h3>
+        <p>OFAC-sanctioned mixers (Tornado Cash, Chipmixer, Blender.io, Sinbad.io) require zero-discretion blocking for US-nexus VASPs. Non-sanctioned mixers require risk-based EDD calibrated to hop distance and volume.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">③</div>
+        <h3>Apply the proportionate response</h3>
+        <p>Direct crypto mixer interaction at high volume: block and request source-of-funds documentation. Indirect exposure at 2 hops: analyst review and EDD. Distant indirect (3+ hops): document, allow, and monitor. Never apply identical responses to all mixer flags.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">④</div>
+        <h3>Document every decision</h3>
+        <p>Record mixer name, type, hop distance, volume, policy rule applied, action taken, and analyst rationale. The documentation trail — not just the block — is the compliance deliverable regulators examine.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<main class="container" role="main">
+<article>
+
+  <section class="card toc" aria-label="Table of Contents">
+    <strong>On this page (Crypto Mixer):</strong>
+    <ul>
+      <li><a href="#overview">What a crypto mixer is and how it works</a></li>
+      <li><a href="#stats">Crypto mixer activity: scale and statistics</a></li>
+      <li><a href="#how-detected">How blockchain analytics detect crypto mixer exposure</a></li>
+      <li><a href="#risk">Crypto mixer AML risk categories and scoring</a></li>
+      <li><a href="#sanctioned">Sanctioned crypto mixers: OFAC SDN list</a></li>
+      <li><a href="#vasp">How VASPs respond to crypto mixer exposure</a></li>
+      <li><a href="#user">What to do if your wallet is flagged for crypto mixer use</a></li>
+      <li><a href="#tools">Analytics tools detecting crypto mixer interactions</a></li>
+      <li><a href="#legal">Crypto mixer legal status and regulatory context</a></li>
+      <li><a href="#best-practices">Best practices for compliance teams</a></li>
+      <li><a href="#troubleshooting">Troubleshooting crypto mixer flag disputes</a></li>
+      <li><a href="#eeat">Sources &amp; references</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </section>
+
+  <section class="card" id="overview">
+    <h2>What a Crypto Mixer Is — and How It Works</h2>
+    <p>
+      A crypto mixer (also called a coin tumbler) is a service that pools cryptocurrency
+      from multiple users and returns equivalent amounts — minus a service fee — to designated
+      output addresses. By aggregating funds from many sources simultaneously, the mixer
+      makes it statistically and practically difficult to link any specific input address
+      to any specific output address.
+    </p>
+    <p>
+      The technical overview of how mixing works is well documented at
+      <a href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler" target="_blank" rel="noopener nofollow">Wikipedia — Cryptocurrency Tumbler</a>.
+      From a compliance standpoint, what matters is not the underlying technology but the
+      outcome: deliberately broken transaction provenance that defeats the fund-flow tracing
+      AML frameworks require.
+    </p>
+
+    <div class="pillbar">
+      <span class="pill">Crypto Mixing</span>
+      <span class="pill">Transaction Obfuscation</span>
+      <span class="pill">AML High-Risk</span>
+      <span class="pill">OFAC Risk</span>
+      <span class="pill">VASP Compliance</span>
+    </div>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>Three main types of crypto mixer</h3>
+        <p class="muted">
+          <strong>Centralised mixers</strong> — operator-run services where users trust the operator to mix and return funds. Seizure risk; records obtainable by law enforcement. Examples: Helix, BestMixer, Chipmixer.<br><br>
+          <strong>Decentralised protocol mixers</strong> — smart-contract-based, using zero-knowledge proofs. No operator; contract addresses can be sanctioned. Example: Tornado Cash.<br><br>
+          <strong>CoinJoin</strong> — collaborative Bitcoin transactions with no mixing pool or operator. Generally lower AML severity than pool-based mixers.
+        </p>
+        <div class="kpi-badges"><span>Centralised</span><span>Decentralised (ZK)</span><span>CoinJoin</span></div>
+      </div>
+      <div class="mini">
+        <h3>Why it triggers AML flags</h3>
+        <p class="muted">FATF's updated virtual asset guidance explicitly classifies anonymity-enhancing technologies as AML risk indicators requiring enhanced due diligence. Deliberately breaking the transaction chain defeats the fund-flow tracing AML frameworks depend on — which is why every major analytics provider (Chainalysis, Elliptic, TRM Labs, Crystal Blockchain) flags crypto mixer interactions as high-risk regardless of user intent.</p>
+        <div class="kpi-badges"><span>FATF red flag</span><span>Defeats traceability</span><span>Universal flag</span></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Intent vs pattern:</strong> Compliance tools cannot distinguish a privacy-conscious user from a criminal using the same crypto mixer — both produce identical on-chain patterns. Enhanced due diligence and source-of-funds documentation are the mechanism for resolving that ambiguity, not presuming criminality from the mixing flag alone.
+    </div>
+  </section>
+
+  <section class="card" id="stats">
+    <h2>Crypto Mixer Activity: Scale and Key Statistics (2024–2026)</h2>
+
+    <div class="stat-block" aria-label="Key crypto mixer statistics">
+      <div class="stat">
+        <span class="stat-num">$7.8B</span>
+        <div class="stat-lbl">Laundered via mixers &amp; DeFi in 2023<br><small>Chainalysis 2024 Crypto Crime Report</small></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">~30%</span>
+        <div class="stat-lbl">Ransomware payments routed via mixers<br><small>Chainalysis estimates</small></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4+</span>
+        <div class="stat-lbl">Major crypto mixers sanctioned by OFAC<br><small>2022–2024: TC, Chipmixer, Blender, Sinbad</small></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">High</span>
+        <div class="stat-lbl">Default AML score for direct mixer exposure<br><small>All major analytics providers</small></div>
+      </div>
+    </div>
+
+    <div class="note">
+      Despite law enforcement action against multiple major services, new crypto mixers emerge regularly. Volume through mixing services has remained resilient as operators shift to decentralised protocols that cannot be seized. Source: <a href="https://www.chainalysis.com/reports/crypto-crime-report/" target="_blank" rel="noopener nofollow">Chainalysis 2024 Crypto Crime Report</a>.
+    </div>
+  </section>
+
+  <section class="card" id="how-detected">
+    <h2>How Blockchain Analytics Detect Crypto Mixer Exposure</h2>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>Known cluster attribution</h3>
+        <p class="muted">Analytics providers maintain databases of addresses associated with identified crypto mixer services — deposit addresses, smart contract addresses, relay wallets, and fee collection addresses. Any wallet that transacts with a cluster address is flagged. Databases are updated continuously as new mixers are identified or existing ones expand to new chains. All major providers — Chainalysis, Elliptic, TRM Labs, and Crystal Blockchain — maintain independently-developed mixer cluster databases.</p>
+        <div class="kpi-badges"><span>Deposit clusters</span><span>Smart contracts</span><span>Continuous updates</span></div>
+      </div>
+      <div class="mini">
+        <h3>Behavioural pattern detection</h3>
+        <p class="muted">Even without a direct cluster match, tools identify characteristic mixing patterns: equal-denomination outputs to multiple unrelated addresses, rapid sequential address generation, and timing consistent with pool participation. These heuristics flag novel services before formal attribution. CoinJoin patterns — shared inputs across many addresses — are detected separately and typically assigned lower severity than pool-based mixer interactions.</p>
+        <div class="kpi-badges"><span>Equal-value outputs</span><span>Address cycling</span><span>CoinJoin separate</span></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Hop distance is the key variable:</strong> Direct interaction with a crypto mixer at 1 hop is a strong compliance signal. Exposure at 2–3 hops through legitimate intermediaries carries substantially less weight. Always read the hop distance in the analytics report before determining the response — the score alone is not sufficient information.
+    </div>
+  </section>
+
+  <section class="card" id="risk">
+    <h2>Crypto Mixer AML Risk Categories and Scoring</h2>
+
+    <div style="margin:.75rem 0">
+      <div class="risk-row"><span class="risk-lbl">Low (0–25)</span><div class="risk-track"><div class="risk-fill low"></div></div><span class="risk-val ok">Standard</span></div>
+      <div class="risk-row"><span class="risk-lbl">Medium (26–74)</span><div class="risk-track"><div class="risk-fill med"></div></div><span class="risk-val warn">EDD</span></div>
+      <div class="risk-row"><span class="risk-lbl">High (75–100)</span><div class="risk-track"><div class="risk-fill high"></div></div><span class="risk-val err">Block / SAR</span></div>
+      <div class="risk-row"><span class="risk-lbl">OFAC — any</span><div class="risk-track"><div class="risk-fill crit"></div></div><span class="risk-val err">Critical</span></div>
+    </div>
+
+    <table aria-label="Crypto mixer risk by exposure type">
+      <thead>
+        <tr><th>Exposure type</th><th>Risk level</th><th>Compliance response</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>OFAC-sanctioned mixer, any hop</strong></td>
+          <td class="err">Critical</td>
+          <td>Immediate block; no EDD path; legal counsel; mandatory reporting to OFAC</td>
+        </tr>
+        <tr>
+          <td><strong>Non-sanctioned, direct (1 hop), high volume</strong></td>
+          <td class="err">High 75–95</td>
+          <td>Block above threshold; source-of-funds request; possible SAR filing</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Non-sanctioned, indirect (2 hops)</strong></td>
+          <td class="warn">Medium 40–70</td>
+          <td>Analyst review; EDD; source-of-funds documentation before decision</td>
+        </tr>
+        <tr>
+          <td><strong>Distant indirect (3+ hops)</strong></td>
+          <td class="warn">Low–Medium 15–40</td>
+          <td>Document; allow with increased monitoring frequency</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>CoinJoin only (indirect)</strong></td>
+          <td class="warn">Low–Medium 10–35</td>
+          <td>Document; context-dependent; typically allow with notation</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note err">
+      <strong>OFAC is a separate obligation from AML scoring:</strong> OFAC-sanctioned crypto mixer exposure is a sanctions law matter — it applies regardless of risk score, hop distance, or EDD outcome. Handle it through a separate policy track from standard AML monitoring.
+    </div>
+  </section>
+
+  <section class="card" id="sanctioned">
+    <h2>Sanctioned Crypto Mixers: OFAC SDN List (2026)</h2>
+
+    <table aria-label="OFAC sanctioned crypto mixers">
+      <thead>
+        <tr><th>Mixer</th><th>Designated</th><th>Type</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>Blender.io</strong></td>
+          <td>May 2022</td>
+          <td>Centralised / Bitcoin</td>
+          <td class="err">SDN — first mixer sanctioned; service shut down</td>
+        </tr>
+        <tr>
+          <td><strong>Tornado Cash</strong></td>
+          <td>August 2022</td>
+          <td>Decentralised / Ethereum+</td>
+          <td class="err">SDN — under 5th Circuit legal challenge; still listed</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Chipmixer</strong></td>
+          <td>March 2023</td>
+          <td>Centralised / Bitcoin</td>
+          <td class="err">SDN — servers seized; operator indicted ($3B+ processed)</td>
+        </tr>
+        <tr>
+          <td><strong>Sinbad.io</strong></td>
+          <td>November 2023</td>
+          <td>Centralised / Bitcoin</td>
+          <td class="err">SDN — seized by FBI/DOJ; successor to Blender.io</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note warn">
+      The OFAC SDN list is updated without advance notice. Ensure your AML screening pulls SDN updates automatically. Current list: <a href="https://ofac.treasury.gov/sanctions-programs-and-country-information" target="_blank" rel="noopener nofollow">ofac.treasury.gov</a>.
+    </div>
+  </section>
+
+  <section class="card" id="vasp">
+    <h2>How VASPs Respond to Crypto Mixer Exposure</h2>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>Tiered response matrix</h3>
+        <p class="muted">
+          <strong>OFAC-sanctioned mixer:</strong> immediate block; legal counsel; mandatory OFAC reporting — no EDD path.<br><br>
+          <strong>Non-sanctioned, direct (1 hop), high volume:</strong> block; source-of-funds request; SAR if proceeds suspected.<br><br>
+          <strong>Non-sanctioned, indirect (2 hops):</strong> hold for analyst review; EDD before decision.<br><br>
+          <strong>3+ hops, low volume:</strong> document; allow; increase monitoring cadence.
+        </p>
+        <div class="kpi-badges"><span>Hop-distance driven</span><span>Volume thresholds</span><span>Separate OFAC track</span></div>
+      </div>
+      <div class="mini">
+        <h3>SAR filing for crypto mixer exposure</h3>
+        <p class="muted">Blocking for mixer exposure does not automatically require a SAR — filing is triggered when you suspect criminal proceeds. Mixer exposure combined with large volumes, structuring patterns, or other red flags typically meets the SAR threshold. File with your jurisdiction's FIU. US VASPs file at <a href="https://bsaefiling.fincen.treas.gov/" target="_blank" rel="noopener nofollow">bsaefiling.fincen.treas.gov</a>. Do not tip off the subject of a SAR filing.</p>
+        <div class="kpi-badges"><span>Criminal suspicion threshold</span><span>Combined red flags</span><span>No tipping off</span></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Documentation standard:</strong> For every crypto mixer decision, record: mixer name and type, interaction date, hop distance, volume, policy rule applied, action taken, and analyst rationale. "Crypto mixer exposure — blocked" is not an audit-defensible record. "Non-sanctioned centralised mixer, 1-hop direct, $14K volume, policy §3.1 block threshold met, action: account held pending source-of-funds submission" is.
+    </div>
+  </section>
+
+  <section class="card" id="user">
+    <h2>What to Do if Your Wallet Is Flagged for Crypto Mixer Use</h2>
+    <ul>
+      <li><strong>Request the mixer name, type, date, and hop distance in writing.</strong> This determines your entire resolution path. OFAC-sanctioned mixer at US-nexus platform requires legal counsel. Non-sanctioned indirect exposure requires source-of-funds documentation. These are fundamentally different situations.</li>
+      <li><strong>Gather source-of-funds documentation</strong> showing where funds came from before the mixer interaction: exchange withdrawal records, bank statements, payroll records, or OTC desk receipts.</li>
+      <li><strong>Run the address through a second analytics tool</strong> to independently assess the exposure. Significant divergence between providers strengthens a dispute case.</li>
+      <li><strong>Do not use additional mixing services</strong> to address the flag — this deepens exposure, adds new flags, and signals the layering behaviour that escalates cases to SAR filing.</li>
+      <li><strong>For OFAC-sanctioned mixer exposure at a US-nexus platform:</strong> documentation does not resolve an OFAC block. Consult a cryptocurrency compliance attorney before taking further action.</li>
+    </ul>
+
+    <div class="note">
+      Most exchanges clear well-documented legitimate cases within 5–10 business days when clear source-of-funds evidence is provided through official dispute channels.
+    </div>
+  </section>
+
+  <section class="card" id="tools">
+    <h2>Analytics Tools Detecting Crypto Mixer Interactions</h2>
+
+    <table aria-label="Analytics tools for crypto mixer detection">
+      <thead>
+        <tr><th>Provider</th><th>Mixer coverage</th><th>CoinJoin detection</th><th>OFAC integration</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>Chainalysis KYT</strong></td>
+          <td class="ok">Comprehensive — largest mixer database</td>
+          <td class="ok">Full — separate scoring</td>
+          <td class="ok">Full OFAC SDN</td>
+        </tr>
+        <tr>
+          <td><strong>Elliptic Navigator</strong></td>
+          <td class="ok">Comprehensive — strong DeFi mixer coverage</td>
+          <td class="ok">Full — holistic scoring</td>
+          <td class="ok">OFAC + EU sanctions</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>TRM Labs</strong></td>
+          <td class="ok">Good — 30+ chain coverage</td>
+          <td class="warn">Good — improving</td>
+          <td class="ok">Global sanctions lists</td>
+        </tr>
+        <tr>
+          <td><strong>Crystal Blockchain</strong></td>
+          <td class="ok">Good — strong Bitcoin mixer tracing</td>
+          <td class="ok">Full Bitcoin CoinJoin</td>
+          <td class="ok">OFAC + EU</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      For high-stakes crypto mixer decisions, run the address through two providers and compare category breakdowns. Published methodology: <a href="https://www.chainalysis.com/reports/crypto-crime-report/" target="_blank" rel="noopener nofollow">Chainalysis</a> · <a href="https://www.elliptic.co/resources" target="_blank" rel="noopener nofollow">Elliptic</a>.
+    </div>
+  </section>
+
+  <section class="card" id="legal">
+    <h2>Crypto Mixer Legal Status and Regulatory Context (2026)</h2>
+    <ul>
+      <li><strong>FATF guidance (global):</strong> classifies crypto mixer usage as a risk indicator requiring EDD under the risk-based AML approach. Guidance at <a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-RBA-virtual-assets-2021.html" target="_blank" rel="noopener nofollow">fatf-gafi.org</a>.</li>
+      <li><strong>US FinCEN (2019):</strong> clarified that crypto mixing services meet the definition of a money services business (MSB) under the Bank Secrecy Act and must register, implement AML programmes, and file SARs. Guidance at <a href="https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-certain-business-models" target="_blank" rel="noopener nofollow">fincen.gov</a>.</li>
+      <li><strong>OFAC sanctions:</strong> four mixer services designated 2022–2023 (Blender.io, Tornado Cash, Chipmixer, Sinbad.io). The Tornado Cash designation is under legal challenge following the 5th Circuit ruling (November 2024) — but remains on the SDN list as of March 2026.</li>
+      <li><strong>Operator prosecutions:</strong> Helix operator convicted 2021 ($311M mixed). Chipmixer operator indicted 2023 ($3B+ mixed). Tornado Cash developer Pertsev convicted in Netherlands 2024 (5 years 4 months). Developer liability is now established in both EU and US jurisdictions.</li>
+      <li><strong>User exposure:</strong> Using a crypto mixer is not inherently criminal in most jurisdictions, but using one to launder criminal proceeds is illegal everywhere. OFAC-sanctioned mixer interaction may itself constitute a violation for US persons regardless of intent.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="best-practices">
+    <h2>Best Practices for Compliance Teams Handling Crypto Mixer Flags</h2>
+    <ul>
+      <li><strong>Configure three separate policy tracks:</strong> OFAC-sanctioned mixers (zero discretion), non-sanctioned pool mixers (risk-based, hop-distance tiered), and CoinJoin (lower severity, separate threshold). Conflating them produces both over-restriction and under-compliance.</li>
+      <li><strong>Never auto-block the entire medium-score range for mixer exposure.</strong> Route medium scores to analyst review — many represent indirect exposure through legitimate exchange hot wallets.</li>
+      <li><strong>Update your sanctioned mixer list automatically.</strong> OFAC adds new services without advance notice. Verify your analytics tool's SDN update cadence regularly.</li>
+      <li><strong>Document mixer type in every decision record.</strong> "Mixer flag — blocked" is not defensible. Specify the mixer name, type, hop distance, volume, and the exact policy rule that triggered the action.</li>
+      <li><strong>Build a source-of-funds request template per mixer type.</strong> Specify exactly what evidence resolves each category of exposure — this prevents vague requests that generate vague responses and delay resolution.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Most common error:</strong> Applying OFAC-level blocking to CoinJoin-only exposure. CoinJoin is a legitimate Bitcoin privacy technique. Blanket blocking generates disproportionate false positives relative to the actual compliance risk. Calibrate CoinJoin responses separately.
+    </div>
+  </section>
+
+  <section class="card" id="troubleshooting">
+    <h2>Troubleshooting Crypto Mixer Flag Disputes</h2>
+
+    <h3>"Flagged for crypto mixer exposure without directly using a mixer"</h3>
+    <ul>
+      <li>Indirect exposure is common — a counterparty's wallet may have mixer history that flows through to your address at 2+ hops. Request the hop distance. If it is 2+ hops through a legitimate exchange, gather withdrawal records and submit a documented dispute.</li>
+    </ul>
+
+    <h3>"Platform blocks funds citing OFAC but the transaction predates the designation"</h3>
+    <ul>
+      <li>Pre-designation interactions are not OFAC violations. Request the specific interaction date and the SDN designation date in writing. If the interaction predates the listing, this is a standard high-risk AML situation — not a sanctions matter — and source-of-funds documentation is the resolution path.</li>
+    </ul>
+
+    <h3>"Two analytics tools return very different scores for the same mixer-exposed address"</h3>
+    <ul>
+      <li>Vendor databases and hop-weighting methodologies genuinely differ. Document both outputs — significant divergence is evidence the exposure picture is ambiguous, which strengthens a dispute. Use the more conservative score as your compliance starting point while the dispute is reviewed.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Strongest dispute package:</strong> (1) Full analytics report — mixer name, interaction date, hop distance. (2) Source-of-funds documentation covering the relevant period. (3) Second provider report for comparison. (4) Written explanation of the transaction purpose. Complete packages resolve significantly faster than incomplete submissions.
+    </div>
+  </section>
+
+  <section class="eeat" id="eeat" aria-labelledby="eeat-title">
+    <h2 id="eeat-title">Crypto Mixer: Sources &amp; Authoritative References</h2>
+
+    <div class="grid-2">
+      <div>
+        <h3>Regulatory &amp; legal</h3>
+        <ul>
+          <li><a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-RBA-virtual-assets-2021.html" target="_blank" rel="noopener nofollow">FATF — Risk-Based Approach: Anonymity-Enhancing Technologies</a></li>
+          <li><a href="https://ofac.treasury.gov/sanctions-programs-and-country-information" target="_blank" rel="noopener nofollow">OFAC — SDN List: Tornado Cash, Chipmixer, Blender, Sinbad</a></li>
+          <li><a href="https://www.fincen.gov/resources/statutes-regulations/guidance/application-fincens-regulations-certain-business-models" target="_blank" rel="noopener nofollow">FinCEN — BSA Application to Crypto Mixers (2019 Guidance)</a></li>
+          <li><a href="https://bsaefiling.fincen.treas.gov/" target="_blank" rel="noopener nofollow">FinCEN BSA E-Filing — SAR Portal</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler" target="_blank" rel="noopener nofollow">Wikipedia — Cryptocurrency Tumbler (technical reference)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Analytics &amp; research</h3>
+        <ul>
+          <li><a href="https://www.chainalysis.com/reports/crypto-crime-report/" target="_blank" rel="noopener nofollow">Chainalysis — 2024 Crypto Crime Report (mixer statistics)</a></li>
+          <li><a href="https://www.elliptic.co/resources" target="_blank" rel="noopener nofollow">Elliptic — Mixer Typologies &amp; Detection Methodology</a></li>
+          <li><a href="https://www.trmlabs.com/blog" target="_blank" rel="noopener nofollow">TRM Labs — Blockchain Intelligence: Mixer Activity</a></li>
+          <li><a href="https://crystalblockchain.com/resources/" target="_blank" rel="noopener nofollow">Crystal Blockchain — Compliance Resources</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:1rem;">
+      <strong>About:</strong> Prepared by Crypto Finance Experts. Covers crypto mixer mechanics, types, AML detection, risk scoring, OFAC sanctioned services, VASP compliance, legal context, and troubleshooting. Updated <time datetime="2026-03-18">March 18, 2026</time>. Not legal advice.
+    </div>
+  </section>
+
+  <section class="card faq-section" aria-labelledby="faq">
+    <h2 id="faq">Crypto Mixer: Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f1" id="b1">
+        <h3>What is a crypto mixer?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f1" class="faq-content" role="region" aria-labelledby="b1">
+        <p>A crypto mixer (also called a coin tumbler) is a service that pools cryptocurrency from multiple users and returns equivalent amounts to designated output addresses, breaking the on-chain transaction trail. By aggregating funds from many sources simultaneously, the mixer makes it statistically and practically difficult to link any specific input address to any specific output address.</p>
+        <p>Crypto mixers exist in three main forms: centralised services (where users trust an operator), decentralised protocol mixers (smart-contract-based using zero-knowledge proofs, like Tornado Cash), and CoinJoin implementations (collaborative Bitcoin transactions with no intermediary). All three types are flagged as high-risk in AML screening because deliberately obscuring transaction provenance defeats the traceability that anti-money laundering frameworks require — regardless of the individual user's motivation for using the service.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f2" id="b2">
+        <h3>Why does crypto mixer exposure trigger AML compliance flags?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f2" class="faq-content" role="region" aria-labelledby="b2">
+        <p>Crypto mixer exposure triggers AML flags because deliberately obfuscating fund flows defeats the transaction traceability that AML frameworks depend on for fund-flow analysis. FATF Recommendation 15 and its updated virtual asset guidance explicitly classify the use of anonymity-enhancing technologies as a money laundering risk indicator requiring enhanced due diligence from VASPs.</p>
+        <p>The compliance system cannot distinguish a privacy-conscious user from a criminal laundering proceeds using the same mixer — both produce identical on-chain patterns. This is why mixer exposure triggers enhanced due diligence and source-of-funds documentation requests rather than automatic presumptions of criminality. The documentation process is designed to resolve the ambiguity by establishing a legitimate fund origin. AML tools score mixer exposure as high-risk to prompt this investigation — not to render a verdict on the user's intent.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f3" id="b3">
+        <h3>Is using a crypto mixer illegal?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f3" class="faq-content" role="region" aria-labelledby="b3">
+        <p>Using a crypto mixer is not inherently illegal in most jurisdictions — financial privacy is a legitimate interest. However, using a mixer to launder proceeds of crime is illegal everywhere under money laundering statutes. Operating an unlicensed mixer service is illegal as an unlicensed money transmitter in the US and equivalent offenses in most regulated jurisdictions.</p>
+        <p>There is an important sanctions overlay: OFAC has sanctioned four mixer services as of March 2026 — Blender.io (May 2022), Tornado Cash (August 2022), Chipmixer (March 2023), and Sinbad.io (November 2023). For US persons and entities with US nexus, interacting with these designated services after their SDN listing date may constitute a sanctions violation regardless of intent. This is a strict liability standard where motivation is not a legal defence. Check the current OFAC SDN list before any interaction with a mixing service.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f4" id="b4">
+        <h3>My wallet was flagged for crypto mixer use — what should I do?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f4" class="faq-content" role="region" aria-labelledby="b4">
+        <p>First, request the specific mixer name, type, interaction date, and hop distance from the platform in writing. This information determines your resolution path entirely. OFAC-sanctioned mixer exposure at a US-nexus platform requires legal counsel — source-of-funds documentation alone will not resolve it. Non-sanctioned or indirect exposure requires documentation and a formal dispute submission.</p>
+        <p>Second, gather source-of-funds evidence for the period around the flagged interaction — exchange withdrawal records, bank statements, or OTC desk receipts demonstrating the legitimate origin of funds before the mixer interaction. Third, run the flagged address through a second analytics provider to independently assess the exposure. Submit the complete package through the platform's official compliance dispute channel. Avoid using additional mixing services to address the flag — this deepens the AML exposure and signals layering behaviour that escalates cases to SAR filing.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f5" id="b5">
+        <h3>What is the difference between a crypto mixer and CoinJoin?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f5" class="faq-content" role="region" aria-labelledby="b5">
+        <p>A crypto mixer pools funds from multiple users and returns equivalent amounts from the collective pool — the operator or smart contract acts as an intermediary who aggregates and redistributes funds. CoinJoin is a Bitcoin-native technique where multiple users collaboratively combine their independent transactions into a single transaction, making it unclear which input corresponds to which output — but without any intermediary pool or operator.</p>
+        <p>From an AML perspective, both produce mixing-related flags, but CoinJoin is generally treated at a lower severity than pool-based mixers. CoinJoin has broader legitimate use as a standard Bitcoin privacy technique, and analytics tools score it separately with lower default block thresholds in most compliance configurations. Well-calibrated compliance programmes apply different policy tracks for CoinJoin versus pool-based mixer exposure — treating them identically generates disproportionate false positives on CoinJoin users without improving overall AML effectiveness.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f6" id="b6">
+        <h3>Which crypto mixers have been sanctioned by OFAC?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f6" class="faq-content" role="region" aria-labelledby="b6">
+        <p>As of March 2026, OFAC has sanctioned four crypto mixing services: Blender.io (May 2022 — first mixer designated by OFAC, Bitcoin-based), Tornado Cash (August 2022 — Ethereum smart contract protocol, under ongoing legal challenge following the 5th Circuit ruling in November 2024 but still on the SDN list), Chipmixer (March 2023 — Bitcoin tumbler processing over $3B, servers seized and operator indicted), and Sinbad.io (November 2023 — Bitcoin successor to Blender.io, seized by FBI/DOJ).</p>
+        <p>The OFAC SDN list is updated without advance notice — new designations can occur at any time. VASPs must ensure their AML screening tools pull SDN updates automatically and regularly audit that the update cadence is functioning as expected. The current SDN list with all designated mixer addresses is available at <a href="https://ofac.treasury.gov/sanctions-programs-and-country-information" target="_blank" rel="noopener nofollow">ofac.treasury.gov</a>.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f7" id="b7">
+        <h3>How do blockchain analytics tools detect crypto mixer interactions?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f7" class="faq-content" role="region" aria-labelledby="b7">
+        <p>Analytics providers use two primary methods. First, known cluster attribution: providers maintain databases of addresses associated with identified mixer services — deposit addresses, smart contract addresses, relay wallets, and fee collection addresses. Any wallet transacting with a cluster address is flagged. For smart-contract-based mixers like Tornado Cash, the on-chain interaction with the contract address is directly visible.</p>
+        <p>Second, behavioural pattern detection: equal-denomination outputs to multiple unrelated addresses, rapid sequential address generation, and timing patterns consistent with pool participation flag novel or uncatalogued services before formal cluster attribution. CoinJoin detection uses transaction graph analysis to identify characteristic shared-input patterns and is typically scored separately at a lower severity. All major providers — Chainalysis, Elliptic, TRM Labs, and Crystal Blockchain — use both approaches and update their databases continuously as new mixing services emerge or existing ones expand to new chains.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f8" id="b8">
+        <h3>Does indirect crypto mixer exposure require blocking?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f8" class="faq-content" role="region" aria-labelledby="b8">
+        <p>Not necessarily. Indirect exposure at 2 hops — where one of your counterparties has mixer history — typically requires enhanced due diligence and source-of-funds documentation before deciding, but not automatic blocking under most risk-based compliance frameworks. Indirect exposure at 3+ hops through multiple legitimate intermediaries typically requires documentation only, with the transaction allowed to proceed under increased monitoring.</p>
+        <p>The FATF risk-based approach requires controls proportionate to the identified risk. Blocking all indirect mixer exposure regardless of hop distance creates unnecessary false positives — particularly given that large exchange hot wallets commonly carry some indirect mixer exposure due to the volume of users depositing through them. The exception is OFAC-sanctioned mixer exposure, where any interaction — direct or indirect — requires immediate assessment for legal counsel, as the sanctions obligation does not reduce with hop distance for US-nexus VASPs.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f9" id="b9">
+        <h3>Can I reduce my wallet's AML risk score after crypto mixer exposure?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f9" class="faq-content" role="region" aria-labelledby="b9">
+        <p>The on-chain transaction record is permanent and immutable — the mixer interaction will always appear in blockchain history and in analytics tools' data. There is no technical mechanism to remove the exposure from your wallet's history. Attempting to use additional mixing services to improve the score adds new mixer flags, deepens the AML exposure, and is the layering pattern that triggers SAR filing escalation.</p>
+        <p>The practical resolution path is providing context that enables compliance teams to make an informed decision. Source-of-funds documentation establishing the legitimate origin of the funds before the mixer interaction gives compliance teams the evidence to assess that the exposure does not represent money laundering — even though the mixing flag itself remains permanently visible in the analytics data. Over time, as new clean transactions accumulate on the address, the relative weight of the mixer exposure in the overall risk calculation may decrease — but the flag itself does not disappear.</p>
+      </div>
+    </div>
+
+  </section>
+
+</article>
+</main>
+
+<footer class="container" role="contentinfo" style="padding:2rem 0;border-top:1px solid var(--line);margin-top:2rem">
+  <p class="muted">© 2026 Crypto Mixer Guide. Educational content with compliance-first operational focus. Not legal advice. <time datetime="2026-03-18">March 18, 2026</time>.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      const body = document.getElementById(btn.getAttribute('aria-controls'));
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.querySelector('.faq-plus').textContent = open ? '+' : '−';
+      body.style.maxHeight = open ? '0' : body.scrollHeight + 'px';
+      body.classList.toggle('open', !open);
+    });
+  });
+</script>
+
+</body>
+</html>
